@@ -6,7 +6,7 @@ import re
 dict = {}
 
 def wordlist():
-    with open("dicewarewords.txt") as file:
+    with open("beale.wordlist.txt") as file:
        for line in file:
           (key, val) = line.split()
           dict[int(key)] = val
