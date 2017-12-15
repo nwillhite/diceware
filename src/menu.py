@@ -1,12 +1,14 @@
 #!/usr/bin/python
+import sys
 
 def disclaimer():
-    #print("\n" "Welcome to my implementation of diceware!!!! \n")
+    # print("\n" "Welcome to my implementation of diceware!!!! \n")
     print("\n", 30 * "*" , "DISCLAIMER" , 30 * "*", "\n")
     print("   This is not the most secure way of generating a password.")
     print("   Vist http://world.std.com/~reinhold/diceware.html")
-    print("   Where there are instructions for the most secure and random passpharse.")
+    print("   Where there are instructions for the most secure and random passphrase.")
     print("\n", 30 * "*" , "DISCLAIMER" , 30 * "*", "\n")
+
 
 def print_menu():
     print (30 * "-" , "MENU" , 30 * "-")
@@ -19,21 +21,18 @@ def print_menu():
     print (" 7. Exit")
     print (67 * "-")
 
-def print_menu1():
-    print('How many words do you want in your passpharse?')
-    choice = input("Enter your choice [1-20]: ")
-    return choice
 
-#menu for choosing amount of words
+# menu for choosing amount of words
 def menu_choice(rolldict):
     loop=True
-
-    while loop:         ## While loop which will keep going until loop = False
-        print_menu()    ## Displays menu
-        choice = input("Enter your choice [1-11]: ")
+    # prints disclaimer message
+    disclaimer()
+    while loop:         # While loop which will keep going until loop = False
+        print_menu()    # Displays menu
+        choice = input("Enter your choice [1-7]: ")
 
         if choice == '1':
-            print('How many words do you want in your passpharse?')
+            print('How many words do you want in your passphrase?')
             choice = input("Enter your choice [1-20]: ")
             uservalue = int(choice) * 5
             break
@@ -55,13 +54,12 @@ def menu_choice(rolldict):
         elif choice == '7':
             sys.exit()
         else:
-            # Any integer inputs other than values 1-5 we print an error message
+            # Any integer inputs other than values 1-7 we print an error message
             print("Wrong option selection. Enter any key to try again..")
 
-            #loop=False # This will make the while loop to end as not value of loop is set to False
     return uservalue
 
-
+# prompt for random character insert
 def insert_char_menu():
     print('\nWould you like to insert a character at random?')
     loop = True
@@ -80,9 +78,10 @@ def print_dice_roll(dice):
     for i in dice:
         print(i, " " , end="")
 
-def print_passphare(pharse):
+
+def print_passphrase(phrase):
     # prints out words based on the rolling of the dice
-    print("\n"+ "Your passpharse is: ", end="")
-    for i in pharse:
+    print("\n"+ "Your passphrase is: ", end="")
+    for i in phrase:
         print(i, "" , end="")
     print()
