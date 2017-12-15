@@ -1,29 +1,25 @@
 #!/usr/bin/python
 import os
-import sys
 import random
 from parsewords import wordlist
 from menu import *
 
-#dict for adding a random character into passpharse
+# dict for adding a random character into passpharse
 randchar = {11: '~', 12: '!', 13: '#', 14: '$', 15: '%', 16: '^',
              21: '&', 22: '*', 23: '(', 24: ')', 25: '-', 26: '=',
              31: '+', 32: '[', 33: ']', 34: '_', 35: '{', 36: '}',
              41: ':', 42: ';', 43: '"', 44: ' ', 45: '<', 46: '>',
              51: '?', 52: '/', 53: '0', 54: '1', 55: '2', 56: '3',
              61: '4', 62: '5', 63: '6', 64: '7', 65: '8', 66: '9'}
+
 # diceware wordlist
 words = wordlist()
-# passpharse holder
-passpharse = []
 
-"""
-arr = [random.randint(0,sys.maxsize) for _ in range(5)]
-for i in arr:
-    print(i)
-"""
+# passphrase holder
+passphrase = []
 
-def pharse_roll(num):
+
+def phrase_roll(num):
     currentstring = ""
     rolled_dice = []
     count = 0
@@ -32,15 +28,19 @@ def pharse_roll(num):
         currentstring+= str(roll_dice(6))
 
         # allows string length to get to five and then makes a new entry
-        # into rolls[].
+        # into rolled_dice[].
         if (len(currentstring) % 5 == 0):
             rolled_dice.insert(count,int(currentstring))
             if int(currentstring) in words:
-                passpharse.insert(count,words[int(currentstring)])
+                passphrase.insert(count,words[int(currentstring)])
             count+=1
             currentstring= ""
 
-    return rolled_dice
+    # will print the dice numbers rolled to be used for the passpharse
+    print_dice_roll(rolled_dice)
+
+    # prints passpharse
+    print_passphrase(passphrase)
 
 
 def roll_dice(size):
@@ -48,8 +48,10 @@ def roll_dice(size):
     csprng = random.SystemRandom()
     # Random (probably large) integer
     diceroll = csprng.randint(0, sys.maxsize)
+    # size used to restrict range of numbers generated
     diceroll = ((diceroll % size) + 1)
     return diceroll
+
 
 def insert_char(array):
     # grabs word to insert char
@@ -64,23 +66,22 @@ def insert_char(array):
         character += str(roll_dice(6))
     # converts symbol to int for lookup
     character = int(character)
-    #places random char from lookup into symbol
+    # places random char from lookup into symbol
     character = randchar[character]
 
     s = array[word]
     new_word = s[:position-1] + character + s[position-1:]
     array[word] = new_word
-    #s[:4] + '-' + s[4:]
 
 
 def generate_rand_char():
-    #choice of adding random characters to passpharse
+    # choice of adding random characters to passphrase
     num_of_chars = insert_char_menu()
 
-    #will generate amount of random characters user selects
+    # will generate amount of random characters user selects
     if (num_of_chars != 0):
-        print_passphare(passpharse)
+        print_passphrase(passphrase)
         for i in range (0, num_of_chars):
-            insert_char(passpharse)
-        print_passphare(passpharse)
+            insert_char(passphrase)
+        print_passphrase(passphrase)
         print()
