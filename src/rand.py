@@ -52,6 +52,22 @@ def roll_dice(size):
     diceroll = ((diceroll % size) + 1)
     return diceroll
 
+def reroll(num):
+    loop = True
+    # loops until false
+    while loop:
+        print ("We you like to reroll? ")
+        choice = input("Enter your choice [y or n]: ")
+
+        if choice == 'y' or choice == 'Y':
+            passphrase.clear()
+            phrase_roll(num)
+
+        elif choice == 'n' or choice == 'N':
+            loop = False
+        else:
+            print("Wrong input choice...")
+
 
 def insert_char(array):
     # grabs word to insert char
@@ -85,3 +101,6 @@ def generate_rand_char():
             insert_char(passphrase)
         print_passphrase(passphrase)
         print()
+    else:
+        # prints passpharse
+        print_passphrase(passphrase)
