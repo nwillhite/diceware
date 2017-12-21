@@ -18,7 +18,8 @@ def print_menu():
     print (" 4. 7 Words")
     print (" 5. 8 Words")
     print (" 6. 9 Words")
-    print (" 7. Exit")
+    print (" 7. Look up values of manually rolled dice")
+    print (" 8. Exit")
     print (67 * "-")
 
 
@@ -52,6 +53,10 @@ def menu_choice(rolldict):
             uservalue = rolldict['9']
             break
         elif choice == '7':
+            print('Enter your results of manually rolling your dice')
+            uservalue = input("Enter with spaces (ex: 12345 67891): ")
+            break
+        elif choice == '8':
             sys.exit()
         else:
             # Any integer inputs other than values 1-7 we print an error message
