@@ -52,6 +52,7 @@ def roll_dice(size):
     diceroll = ((diceroll % size) + 1)
     return diceroll
 
+
 def reroll(num):
     loop = True
     # loops until false
@@ -96,11 +97,12 @@ def generate_rand_char():
 
     # will generate amount of random characters user selects
     if (num_of_chars != 0):
-        print_passphrase(passphrase)
+        print_passphrase(passphrase) # prints passpharse
+        # loops from 0 to user choice inserting as many random character as
+        # user choose
         for i in range (0, num_of_chars):
             insert_char(passphrase)
-        print_passphrase(passphrase)
+        print_passphrase(passphrase) # prints passpharse
         print()
     else:
-        # prints passpharse
         print_passphrase(passphrase)
