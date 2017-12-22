@@ -30,7 +30,7 @@ def menu_choice(rolldict):
     disclaimer()
     while loop:         # While loop which will keep going until loop = False
         print_menu()    # Displays menu
-        choice = input("Enter your choice [1-7]: ")
+        choice = input("Enter your choice [1-8]: ")
 
         if choice == '1':
             print('How many words do you want in your passphrase?')
@@ -54,7 +54,7 @@ def menu_choice(rolldict):
             break
         elif choice == '7':
             print('Enter your results of manually rolling your dice')
-            uservalue = input("Enter with spaces (ex: 12345 67891): ")
+            uservalue = input("Enter with spaces (ex: 12345 63421): ")
             break
         elif choice == '8':
             sys.exit()
