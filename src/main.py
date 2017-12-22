@@ -12,7 +12,12 @@ rolldict = {'1': 5,'2': 10, '3': 15, '4': 20,'5': 25, '6': 30,'7': 35,
 uservalue = menu_choice(rolldict)
 
 # generates passphrase based on number of rolls that
-phrase_roll(uservalue)
+if type(uservalue).__name__ == 'int':
+    phrase_roll(uservalue)
+    reroll(uservalue)
+elif type(uservalue).__name__ != 'int':
+    split_input(uservalue)
+
 
 # choice of adding random characters to passphrase
 generate_rand_char()

@@ -31,10 +31,12 @@ def phrase_roll(num):
         # into rolled_dice[].
         if (len(currentstring) % 5 == 0):
             rolled_dice.insert(count,int(currentstring))
-            if int(currentstring) in words:
-                passphrase.insert(count,words[int(currentstring)])
+            #if int(currentstring) in words:
+            #    passphrase.insert(count,words[int(currentstring)])
             count+=1
             currentstring= ""
+
+    roll_convert(rolled_dice)
 
     # will print the dice numbers rolled to be used for the passpharse
     print_dice_roll(rolled_dice)
@@ -55,40 +57,35 @@ def roll_dice(size):
 
 def reroll(num):
     loop = True
-    # loops until false
+    # loop continues while the user presses y or Y
     while loop:
-        print ("We you like to reroll? ")
+        print ("\nWe you like to reroll? ")
         choice = input("Enter your choice [y or n]: ")
-
+        # loop continues
         if choice == 'y' or choice == 'Y':
             passphrase.clear()
             phrase_roll(num)
-
+        #if choice is n or N ends loop
         elif choice == 'n' or choice == 'N':
             loop = False
         else:
             print("Wrong input choice...")
 
+def split_input(rolls):
+    rolls = rolls.split()
+    roll_convert(rolls)
+    # will print the dice numbers rolled to be used for the passpharse
+    print_dice_roll(rolls)
 
-def insert_char(array):
-    # grabs word to insert char
-    word = roll_dice(len(array)-1)
-    #print(word)
-    # grabs a position in word to insert char
-    position = roll_dice(len(array[word]))
+    # prints passpharse
+    print_passphrase(passphrase)
 
-    # generates the char to be inserted
-    character = ''
-    for i in range(0,2):
-        character += str(roll_dice(6))
-    # converts symbol to int for lookup
-    character = int(character)
-    # places random char from lookup into symbol
-    character = randchar[character]
-
-    s = array[word]
-    new_word = s[:position-1] + character + s[position-1:]
-    array[word] = new_word
+def roll_convert(rolls):
+    count = 0
+    for i in rolls:
+        if int(i) in words:
+            passphrase.insert(count, words[int(i)])
+            count+=1
 
 
 def generate_rand_char():
@@ -106,3 +103,31 @@ def generate_rand_char():
         print()
     else:
         print_passphrase(passphrase)
+
+# used to get the word and position in that word to insert random characters
+def insert_char_roll(size):
+    # grabs random address for seed
+    csprng = random.SystemRandom()
+    # Random (probably large) integer
+    diceroll = csprng.randint(0, size)
+    return diceroll
+
+
+def insert_char(array):
+    # grabs word to insert char
+    word = insert_char_roll(len(array)-1)
+    # grabs a position in word to insert char
+    position = insert_char_roll(len(array[word]))
+    # generates the char to be inserted
+    character = ''
+    for i in range(0,2):
+        character += str(roll_dice(6))
+    # converts symbol to int for lookup
+    character = int(character)
+    # places random char from lookup into symbol
+    character = randchar[character]
+
+    # inserts the character into the word
+    s = array[word]
+    new_word = s[:position-1] + character + s[position-1:]
+    array[word] = new_word
