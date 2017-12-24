@@ -13,13 +13,11 @@ def disclaimer():
 def print_menu():
     print (30 * "-" , "MENU" , 30 * "-")
     print (" 1. Enter your own amount")
-    print (" 2. 5 Words")
-    print (" 3. 6 Words")
-    print (" 4. 7 Words")
-    print (" 5. 8 Words")
-    print (" 6. 9 Words")
-    print (" 7. Look up values of manually rolled dice")
-    print (" 8. Exit")
+    print (" 2. 4 words")
+    print (" 3. 5 Words")
+    print (" 4. 6 Words")
+    print (" 5. Look up values of manually rolled dice")
+    print (" 6. Exit")
     print (67 * "-")
 
 
@@ -30,7 +28,7 @@ def menu_choice(rolldict):
     disclaimer()
     while loop:         # While loop which will keep going until loop = False
         print_menu()    # Displays menu
-        choice = input("Enter your choice [1-8]: ")
+        choice = input("Enter your choice [1-6]: ")
 
         if choice == '1':
             print('How many words do you want in your passphrase?')
@@ -38,25 +36,19 @@ def menu_choice(rolldict):
             uservalue = int(choice) * 5
             break
         elif choice == '2':
-            uservalue = rolldict['5']
+            uservalue = rolldict['4']
             break
         elif choice == '3':
-            uservalue = rolldict['6']
+            uservalue = rolldict['5']
             break
         elif choice == '4':
-            uservalue = rolldict['7']
+            uservalue = rolldict['6']
             break
         elif choice == '5':
-            uservalue = rolldict['8']
-            break
-        elif choice == '6':
-            uservalue = rolldict['9']
-            break
-        elif choice == '7':
             print('Enter your results of manually rolling your dice')
             uservalue = input("Enter with spaces (ex: 12345 63421): ")
             break
-        elif choice == '8':
+        elif choice == '6':
             sys.exit()
         else:
             # Any integer inputs other than values 1-7 we print an error message
