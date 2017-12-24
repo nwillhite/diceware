@@ -3,6 +3,7 @@ import os
 import random
 from parsewords import wordlist
 from menu import *
+from beale_wordlist import *
 
 # dict for adding a random character into passpharse
 randchar = {11: '~', 12: '!', 13: '#', 14: '$', 15: '%', 16: '^',
@@ -13,7 +14,7 @@ randchar = {11: '~', 12: '!', 13: '#', 14: '$', 15: '%', 16: '^',
              61: '4', 62: '5', 63: '6', 64: '7', 65: '8', 66: '9'}
 
 # diceware wordlist
-words = wordlist()
+words = beale_wordlist
 
 # passphrase holder
 passphrase = []
@@ -103,6 +104,7 @@ def generate_rand_char():
         print()
     else:
         print_passphrase(passphrase)
+        print()
 
 # used to get the word and position in that word to insert random characters
 def insert_char_roll(size):
